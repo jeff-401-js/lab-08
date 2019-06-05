@@ -3,6 +3,9 @@
 const uuid = require('uuid/v4');
 
 const schema = {
+  id: {required: true},
+  name: {required: true},
+  category: {required: false},
 };
 
 class Products {

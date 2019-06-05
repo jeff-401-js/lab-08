@@ -45,4 +45,20 @@ describe('Category Model', () => {
           });
       });
   });
+
+  it('can delete() a category', () => {
+    let obj = {name:'Fruit'};
+    return categories.post(obj)
+      .then(record => {
+        console.log(record);
+        console.log(categories);
+        return categories.delete(record._id)
+          .then(category => {
+            console.log(categories);
+            Object.keys(obj2).forEach(key =>{
+              expect(category[key]).toEqual(obj2[key]);
+            });
+          });
+      });
+  });
 });
