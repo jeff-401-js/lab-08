@@ -12,13 +12,17 @@ class Categories {
     return schema.find(queryObject);
   }
   
-  post(record) {
+  post(entry) {
+    let record = new schema(entry);
+    return record.save();
   }
 
   put(_id, record) {
+    return schema.findByIdAndUpdate(_id, record, {new:true});
   }
 
   delete(_id) {
+    return schema.findByIdAndDelete(_id);
   }
 
 }
