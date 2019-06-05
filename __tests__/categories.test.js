@@ -32,4 +32,17 @@ describe('Category Model', () => {
       });
   });
   
+  it('can put() a category', () => {
+    let obj = {name:'Fruit'};
+    let obj2 = {name: 'Pizza'};
+    return categories.post(obj)
+      .then(record => {
+        return categories.put(record._id, obj2)
+          .then(category => {
+            Object.keys(obj2).forEach(key =>{
+              expect(category[key]).toEqual(obj2[key]);
+            });
+          });
+      });
+  });
 });
