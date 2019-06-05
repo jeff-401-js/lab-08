@@ -8,8 +8,8 @@ const supergoose = require('./supergoose.js');
 beforeAll(supergoose.startDB);
 afterAll(supergoose.stopDB);
 
-describe('Category Model', () => {
-  it('can post() a new category', () => {
+describe('Products Model', () => {
+  it('can post() a new product', () => {
     let obj = {name:'Fruit'};
     return products.post(obj)
       .then(record => {
@@ -19,7 +19,7 @@ describe('Category Model', () => {
       });
   });
 
-  it('can get() a category', () => {
+  it('can get() a product', () => {
     let obj = {name:'Fruit'};
     return products.post(obj)
       .then(record => {
@@ -32,7 +32,7 @@ describe('Category Model', () => {
       });
   });
   
-  it('can put() a category', () => {
+  it('can put() a product', () => {
     let obj = {name:'Fruit'};
     let obj2 = {name: 'Pizza'};
     return products.post(obj)
@@ -46,18 +46,16 @@ describe('Category Model', () => {
       });
   });
 
-  it('can delete() a category', () => {
+  it('can delete() a product', () => {
     let obj = {name:'Fruit'};
     return products.post(obj)
       .then(record => {
-        console.log(record);
-        console.log(products);
         return products.delete(record._id)
           .then(category => {
-            console.log(products);
-            Object.keys(obj2).forEach(key =>{
-              expect(category[key]).toEqual(obj2[key]);
-            });
+            products.get(category._id)
+              .then(cat => {
+                expect(cat).toNotBe(obj);
+              });
           });
       });
   });
