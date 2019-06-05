@@ -6,14 +6,14 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 // Esoteric Resources
-const errorHandler = require( './middleware/error.js.js');
-const notFound = require( './middleware/404.js.js' );
+const errorHandler = require( './middleware/error.js');
+const notFound = require( './middleware/404.js' );
 
 // Models
-const Products = require('./models/products.js.js');
+const Products = require('./models/products.js');
 const products = new Products();
 
-const Categories = require('./models/categories.js.js');
+const Categories = require('./models/categories.js');
 const categories = new Categories();
 
 // Prepare the express app
