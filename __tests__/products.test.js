@@ -52,9 +52,9 @@ describe('Products Model', () => {
       .then(record => {
         return products.delete(record._id)
           .then(category => {
-            products.get(category._id)
+            return products.get(category._id)
               .then(cat => {
-                expect(cat).toNotBe(obj);
+                expect(cat.length).toBe(0);
               });
           });
       });
