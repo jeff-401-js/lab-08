@@ -11,4 +11,9 @@ products.pre('save', function(){
   this.name = this.name.toUpperCase();
 });
 
+products.post('save', function(){
+  console.log('finished saving');
+  console.log(this);
+});
+
 module.exports = mongoose.model('products', products);
